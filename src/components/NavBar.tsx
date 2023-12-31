@@ -1,46 +1,30 @@
-interface previousBtnProps {
+interface navBarProps {
+  btnType: string;
   setPokemonIdx: React.Dispatch<React.SetStateAction<number>>;
   pokemonIdx: number;
+  pokemonListLength?: number;
 }
 
-interface nextBtnProps {
-  setPokemonIdx: React.Dispatch<React.SetStateAction<number>>;
-  pokemonIdx: number;
-  pokemonListLength: number;
-}
-
-export function PreviousBtn(props: previousBtnProps) {
-  const { setPokemonIdx, pokemonIdx } = props;
+function NavBar(props: navBarProps) {
+  const { btnType, setPokemonIdx, pokemonIdx, pokemonListLength } = props;
   const handlePreviousClick = () => {
     if (pokemonIdx > 0) {
       setPokemonIdx(pokemonIdx - 1);
     }
   };
-
-  return (
-    <button
-      className="border border-black rounded-xl bg-gray-600 text-white h-10 px-2 hover:bg-gray-300 hover:text-black transition duration-500 font-bold"
-      onClick={handlePreviousClick}
-    >
-      Précedent
-    </button>
-  );
-}
-
-export function NextBtn(props: nextBtnProps) {
-  const { setPokemonIdx, pokemonIdx, pokemonListLength } = props;
   const handleNextClick = () => {
-    if (pokemonIdx < pokemonListLength - 1) {
+    if (pokemonListLength !== undefined && pokemonIdx < pokemonListLength - 1) {
       setPokemonIdx(pokemonIdx + 1);
     }
   };
-
   return (
     <button
       className="border border-black rounded-xl bg-gray-600 text-white h-10 px-2 hover:bg-gray-300 hover:text-black transition duration-500 font-bold"
-      onClick={handleNextClick}
+      onClick={btnType === "Suivant" ? handleNextClick : handlePreviousClick}
     >
-      Suivant
+      {btnType}
     </button>
   );
 }
+
+export default NavBar;

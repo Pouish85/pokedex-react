@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PokemonCard from "./components/PokemonCard";
-import { NextBtn, PreviousBtn } from "./components/NavBar";
+import NavBar from "./components/NavBar";
 
 interface Pokemon {
   name: string;
@@ -37,9 +37,14 @@ function App() {
   ];
   return (
     <div className="flex space-x-2 items-center">
-      <PreviousBtn setPokemonIdx={setPokemonIdx} pokemonIdx={pokemonIdx} />
+      <NavBar
+        btnType="Précédent"
+        setPokemonIdx={setPokemonIdx}
+        pokemonIdx={pokemonIdx}
+      />
       <PokemonCard pokemon={pokemonList[pokemonIdx]} />
-      <NextBtn
+      <NavBar
+        btnType="Suivant"
         setPokemonIdx={setPokemonIdx}
         pokemonIdx={pokemonIdx}
         pokemonListLength={pokemonList.length}

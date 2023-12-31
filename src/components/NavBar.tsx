@@ -1,5 +1,7 @@
+type BtnType = "Suivant" | "Précédent";
+
 interface navBarProps {
-  btnType: string;
+  btnType: BtnType;
   setPokemonIdx: React.Dispatch<React.SetStateAction<number>>;
   pokemonIdx: number;
   pokemonListLength?: number;
